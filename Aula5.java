@@ -2,55 +2,50 @@ import java.util.Scanner;
 
 class Aula5{
 	public static void main(String[] args){
-		Conta minhaConta = new Conta();
-		minhaConta.dono = "Priscila";
-		minhaConta.saldo = 1000;
-		minhaConta.numero = 1;
+		
+		double valor = 0;		
 		int opcao;
 
-		do{
-			System.out.println("\n 1 -  Consultar Saldo: ");
-			System.out.println("\n 2 -    Efetuar Saque: ");
-			System.out.println("\n 3 - Efetuar Depósito: ");
-			System.out.println("\n 4 -  Consultar Saldo: ");	
+		Conta minhaConta = new Conta();
+		
 
-			Scanner entrada = new Scanner (System.in);
+		do{
+			System.out.println("\n 1 -       Nova Conta ");
+			System.out.println("\n 2 -  Consultar Saldo ");
+			System.out.println("\n 3 -    Efetuar Saque ");
+			System.out.println("\n 4 - Efetuar Depósito ");
+			System.out.println("\n 5 -             Sair ");	
+
+			Scanner entrada = new Scanner(System.in);
 			opcao = entrada.nextInt();
 
-		switch( opcao )
-		{
-		    case 1:
-			    System.out.println("\n\n Saldo: " + minhaConta.saldo );
-			    break;		    
-		    case 2:
+			switch( opcao )
+			{
+				case 1:
+					minhaConta.criar(minhaConta);
+				case 2:
+					System.out.println("\n\n Saldo: " + minhaConta.saldo );
+					break;		    
+				case 3:
+					System.out.println("\n\n Informe o valor do saque: ");
+					valor = entrada.nextDouble();
+					if (minhaConta.saca(valor) == false){
+						System.out.println("\n saldo insufuciente! \n ");
+					}
+					break;		    
+				case 4:
+					System.out.println("\n\n Informe o valor do depósito: ");
+					valor = entrada.nextDouble();
+					minhaConta.deposita(valor);
+					break;	
+				case 5:
+					break;
+				
+				default:
+			}
 
-		    
-		    case 3:
-			    comandos caso a opção 3 tenha sido escolhida
-			    break;
-		    case 4:
-			    comandos caso a opção 3 tenha sido escolhida
-			    break;
-		    
-		    default:
-			    comandos caso nenhuma das opções anteriores tenha sido escolhida
-		}
 
-
-		}while(opcao != 4);
-
-		System.out.println("\n Numero: " + minhaConta.numero + "\n   Dono: " + minhaConta.dono + "\n  Saldo: " + minhaConta.saldo );
-
-		if (minhaConta.saca(20) == false){
-			System.out.println("\n saldo insufuciente! \n ");
-		}
-
-		System.out.println("\n Numero: " + minhaConta.numero + "\n   Dono: " + minhaConta.dono + "\n  Saldo: " + minhaConta.saldo );
-
-		minhaConta.deposita(200);
-
-		System.out.println("\n Numero: " + minhaConta.numero + "\n   Dono: " + minhaConta.dono + "\n  Saldo: " + minhaConta.saldo );
-
+		}while(opcao != 5);
 		
 	}
 }
